@@ -1,0 +1,26 @@
+Teste Prático de Lógica
+
+Objetivo
+Monte um arquivo texto com um algoritmo, passo a passo, para troca de um pneu de carro que furou. Exemplo de um algoritmo bem básico para a realização de um churrasco.
+1.	Acender a churrasqueira;
+2.	Lavar os espetos;
+3.	Espetar a carne nos espetos
+4.	Colocar os espetos para assarem;
+5.	A cada 3 minutos trocar o lado do espeto;
+6.	Após 15 minutos retirar a carne;
+7.	Servir a carne aos convidados;
+8.	Apagar o fogo da churrasqueira;
+9.	Lavar os espetos;
+10.	Guardar os espetos.
+
+Troca do pneu do carro que furou:
+1.	Se o carro estiver em movimento quando perceber que o pneu está furado, procure um lugar seguro para encostar para efetuar a troca do pneu furado. 
+2.	Desligue o carro, acione o freio de mão e antes de efetuar qualquer manobra para dar inicio a troca do pneu sinalize o local.
+3.	Ao encostar o carro vá até o porta-malas onde fica a chave para elevar o carro, o macaco hidráulico e o estepe.
+4.	Em seguida posicione o macaco hidráulico no canto inferior da lataria, próximo ao pneu furado.
+5.	Antes de começar a elevar o carro afrouxe os parafusos do pneu até soltar parcialmente.
+6.	Em seguida, após os parafusos já afrouxados comece o movimento rotativo no macaco hidraulico para elevação do carro.
+7.	Retire os parafusos por completo, retire o pneu furado, posicione o estepe no lugar, posicione os parafusos conforme os furos do estepe e aperte-os.
+8.	Após o aperto completo dos parafusos, faça o movimento inverso no macaco hidráulico para voltar o carro ao chão. 
+9.	Quando o carro encostar o chão novamente retire o macaco hidraulico.
+10.	Para finalizar, guarde os equipamentos utilizados no porta-malas e os pneu furado junto.

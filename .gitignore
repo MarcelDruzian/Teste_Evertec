@@ -1,0 +1,57 @@
+# Build results
+bin/
+obj/
+
+# Visual Studio files
+.vs/
+*.user
+*.suo
+
+# Resharper
+_ReSharper*/
+*.DotSettings.user
+
+# Rider
+.idea/
+
+# Logs
+*.log
+
+# NuGet
+*.nupkg
+*.snupkg
+packages/
+# Excluir apenas se não usar restore automático
+*.nuget.props
+*.nuget.targets
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# Publish
+*.publish.xml
+*.pubxml
+*.pubxml.user
+Properties/PublishProfiles/
+
+# Configurações locais
+appsettings.Development.json
+appsettings.Local.json
+
+# Backup & outros
+*.bak
+*.tmp
+*.swp
+
+# Testes
+TestResults/
+*.coverage
+*.coveragexml
+
+# Arquivos gerados por ferramentas
+project.lock.json
+project.fragment.lock.json
+
+# MacOS / Linux
+.DS_Store
+*.swp
