@@ -62,14 +62,12 @@ VALUES
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'MS'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES
-('Bonito', @ID_Estado);
+VALUE ('Bonito', @ID_Estado);
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'DF'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES
-('Brasília', @ID_Estado);
+VALUES ('Brasília', @ID_Estado);
 GO
 
 GO
@@ -94,73 +92,57 @@ SELECT TOP 1 @ID_Cidade = ID_Cidade
 FROM Cidades 
 WHERE Nome = 'São Paulo'
 
-INSERT INTO Ponto_Turistico 
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Avenida Paulista', 'MASP', @ID_Cidade, 'Principal avenida financeira e cultural da cidade'),
-('Parque Ibirapuera', 'Portão 3', @ID_Cidade, 'Maior parque urbano da cidade de São Paulo');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES('Avenida Paulista', 'MASP', @ID_Cidade, 'Principal avenida financeira e cultural da cidade', GETDATE()),
+      ('Parque Ibirapuera', 'Portão 3', @ID_Cidade, 'Maior parque urbano da cidade de São Paulo', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Campinas'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Lagoa do Taquaral', 'Parque Portugal', @ID_Cidade, 'Área de lazer e prática esportiva');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Lagoa do Taquaral', 'Parque Portugal', @ID_Cidade, 'Área de lazer e prática esportiva', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Santos'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Orla da Praia', 'Jardim da Orla', @ID_Cidade, 'Maior jardim de orla marítima do mundo');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Orla da Praia', 'Jardim da Orla', @ID_Cidade, 'Maior jardim de orla marítima do mundo', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Curitiba'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Jardim Botânico', 'Estufa de Vidro', @ID_Cidade, 'Principal cartão-postal da cidade');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Jardim Botânico', 'Estufa de Vidro', @ID_Cidade, 'Principal cartão-postal da cidade', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Foz do Iguaçu'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Cataratas do Iguaçu', 'Parque Nacional', @ID_Cidade, 'Uma das maiores quedas d’água do mundo');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Cataratas do Iguaçu', 'Parque Nacional', @ID_Cidade, 'Uma das maiores quedas d’água do mundo', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Rio de Janeiro'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Cristo Redentor', 'Corcovado', @ID_Cidade, 'Uma das sete maravilhas do mundo moderno');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Cristo Redentor', 'Corcovado', @ID_Cidade, 'Uma das sete maravilhas do mundo moderno', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Bonito'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Gruta do Lago Azul', 'Gruta Natural', @ID_Cidade, 'Caverna com lago de águas cristalinas');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Gruta do Lago Azul', 'Gruta Natural', @ID_Cidade, 'Caverna com lago de águas cristalinas', GETDATE());
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
 WHERE Nome = 'Brasília'
 
-INSERT INTO Ponto_Turistico
-(Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao)
-VALUES
-('Congresso Nacional', 'Praça dos Três Poderes', @ID_Cidade, 'Sede do Poder Legislativo do Brasil');
+INSERT INTO Ponto_Turistico (Nome_Ponto_Turistico, Referencia_Ponto_Turistico, ID_Cidade, Descricao, Data_Cadastro)
+VALUES ('Congresso Nacional', 'Praça dos Três Poderes', @ID_Cidade, 'Sede do Poder Legislativo do Brasil', GETDATE());
 
 SELECT * FROM Ponto_Turistico
