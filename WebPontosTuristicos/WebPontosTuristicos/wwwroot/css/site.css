@@ -29,3 +29,119 @@ body {
 .form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
   text-align: start;
 }
+
+/**/
+
+.browser {
+    width: 800px;
+    margin: 40px auto;
+    background-color: #fff;
+    border: 1px solid #ccc;
+}
+
+.browser-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 10px;
+    background-color: #e0e0e0;
+    border-bottom: 1px solid #ccc;
+}
+
+    .browser-header span {
+        font-size: 14px;
+    }
+
+.window-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+    .window-buttons div {
+        width: 14px;
+        height: 14px;
+        border: 1px solid #777;
+        background-color: #fff;
+    }
+
+.address-bar {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ccc;
+    font-size: 14px;
+    color: #555;
+}
+
+.content {
+    padding: 40px;
+    text-align: center;
+}
+
+.top-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.logo {
+    width: 140px;
+    height: 60px;
+    border: 1px solid #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #666;
+}
+
+.btn {
+    padding: 10px 16px;
+    border: 1px solid #999;
+    background-color: #e0e0e0;
+    cursor: pointer;
+}
+
+.search-area {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-area input {
+    width: 380px;
+    padding: 10px;
+    border: 1px solid #999;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 6px;
+    text-align: justify;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #999;
+    font-size: 14px;
+}
+
+textarea {
+    height: 100px;
+    resize: none;
+}
+
+.location-group {
+    display: flex;
+    gap: 10px;
+}
+
+.location-group select {
+    width: 80px;
+}

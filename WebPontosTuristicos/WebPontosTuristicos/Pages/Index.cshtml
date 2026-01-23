@@ -4,24 +4,46 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-
 <div>
-    <h2>Pontos Turísticos</h2>
-    <ul>
-        @foreach (var ponto in Model.PontosTuristicos)
-        {
-            
-            <div>
-                <p>@ponto.Nome_Ponto_Turistico</p>
-                <br />
-                <li>@ponto.Descricao</li>
-            </div>
+    <div class="content">
+        <div class="top-actions">
+            <div class="logo">Logotipo</div>
+            @* <button class="btn">cadastrar um ponto turístico</button> *@
+            <a class="btn" asp-page="/Cadastro">cadastrar um ponto turístico</a>
+        </div>
 
+
+        <form method="get">
+            <div class="search-area">
+                <input type="text" name="TermoBusca" value="@Model.TermoBusca" placeholder="Digite um termo para buscar um ponto turístico...">
+                <button class="btn" type="submit">buscar</button>
+            </div>
+        </form>
+    </div>
+
+    <div id="pontos-turisticos" >
+        <h1>Pontos Turísticos</h1>
+        @if (Model.PontosTuristicos != null && Model.PontosTuristicos.Any())
+        {
+            <span>
+                @foreach (var ponto in Model.PontosTuristicos)
+                {
+                    <h3>
+                        <strong>@ponto.Nome_Ponto_Turistico</strong><br />
+                    </h3>    
+                    <p>
+                        @ponto.Descricao<br />
+                        Referência: @ponto.Referencia_Ponto_Turistico<br />
+                        Cidade: @(ponto.Cidade?.Nome_Cidade)
+                    </p>
+                    <a class="btn" asp-page="/Detalhes" asp-route-id="@ponto.ID_Ponto_Turistico">Detalhes</a>
+                }
+            </span>
         }
-    </ul>
+        else
+        {
+            <span>Nenhum ponto turístico encontrado.</span>
+        }
+    </div>
 </div>
+

@@ -1,0 +1,83 @@
+﻿@page
+@model CadastroModel
+@{
+    ViewData["Title"] = "Cadastro";
+
+
+}
+
+<div class="content">
+    <div class="logo">Logotipo</div>
+
+    <form method="post" style="margin-top: 20px">
+        <div class="form-group">
+            <label style="text-align: justify" for="nome">Nome:</label>
+            <input asp-for="Ponto.Nome_Ponto_Turistico" type="text" id="nome" placeholder="Praça dos Pombos...">
+        </div>
+
+        <div class="form-group">
+            <label>Localização:</label>
+            <div class="location-group">
+                <select id="estadoSelect" onchange="carregarCidades()">
+                    <option value="">...</option>
+                    @foreach (var estado in Model.Estados)
+                    {
+                        <option value="@estado.ID_Estado">@estado.Sigla_Estado</option>
+                    }
+                </select>
+                <select asp-for="Ponto.ID_Cidade" name="Ponto.ID_Cidade" id="cidadeSelect" style="width: 100%">
+                    <option value="">
+                        Cidade...
+                    </option>
+                </select>
+                @* <input type="text" placeholder="Cidade"> *@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="referencia">Referência:</label>
+            <input asp-for="Ponto.Referencia_Ponto_Turistico" type="text" id="referencia" placeholder="...">
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea asp-for="Ponto.Descricao" id="descricao" placeholder="..."></textarea>
+        </div>
+
+        <div class="buttons">
+            <a class="btn" asp-page="/Index">Voltar</a>
+            <button type="submit" class="btn">Cadastrar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function carregarCidades() {
+        var estadoId = document.getElementById("estadoSelect").value;
+        var cidadeSelect = document.getElementById("cidadeSelect");
+
+        cidadeSelect.innerHTML = "<option value=''>Carregando...</option>";
+
+        if (estadoId === "") {
+            cidadeSelect.innerHTML = "<option value=''>Cidade...</option>";
+            return;
+        }
+
+        fetch(`?handler=Cidades&estadoId=${estadoId}`)
+            .then(response => response.json())
+            .then(data => {
+                cidadeSelect.innerHTML = "<option value=''>Cidade...</option>";
+
+                data.forEach(cidade => {
+                    var option = document.createElement("option");
+                    option.value = cidade.iD_Cidade;
+                    option.text = cidade.nome_Cidade;
+                    cidadeSelect.appendChild(option);
+                    console.log(cidade);
+                });
+            })
+            .catch(() => {
+                cidadeSelect.innerHTML = "<option value=''>Erro ao carregar</option>";
+            });        
+    };
+</script>

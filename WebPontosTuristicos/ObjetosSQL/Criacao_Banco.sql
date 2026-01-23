@@ -15,10 +15,13 @@ CREATE TABLE Cidades (ID_Cidade     Integer Primary Key Identity(1,1)
                      ,CONSTRAINT FK_ID_Estado  FOREIGN KEY (ID_Estado) References Estados (ID_Estado))
 GO
 
+
+
 CREATE TABLE Ponto_Turistico (ID_Ponto_Turistico         Integer Primary Key Identity (1,1)
-                             ,Nome_Ponto_Turistico       Varchar(50)
-                             ,Referencia_Ponto_Turistico Varchar(150)
-                             ,ID_Cidade                  Integer
+                             ,Nome_Ponto_Turistico       Varchar(50)   NOT NULL
+                             ,Referencia_Ponto_Turistico Varchar(150)  NOT NULL
+                             ,ID_Cidade                  Integer       NOT NULL
                              ,Descricao                  Varchar(500)
+                             ,Data_Cadastro              Datetime      NOT NULL
                              ,CONSTRAINT FK_ID_Cidade FOREIGN KEY (ID_Cidade) References Cidades (ID_Cidade))
 GO

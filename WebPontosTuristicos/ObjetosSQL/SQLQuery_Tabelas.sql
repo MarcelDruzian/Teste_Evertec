@@ -1,84 +1,94 @@
 INSERT INTO Estados (Sigla_Estado, Nome)
-VALUES ('AC', 'Acre'),
-       ('AL', 'Alagoas'),
-       ('AP', 'Amapá'),
-       ('AM', 'Amazonas'),
-       ('BA', 'Bahia'),
-       ('CE', 'Ceará'),
-       ('DF', 'Distrito Federal'),
-       ('ES', 'Espírito Santo'),
-       ('GO', 'Goiás'),
-       ('MA', 'Maranhão'),
-       ('MT', 'Mato Grosso'),
-       ('MS', 'Mato Grosso do Sul'),
-       ('MG', 'Minas Gerais'),
-       ('PA', 'Pará'),
-       ('PB', 'Paraíba'),
-       ('PR', 'Paraná'),
-       ('PE', 'Pernambuco'),
-       ('PI', 'Piauí'),
-       ('RJ', 'Rio de Janeiro'),
-       ('RN', 'Rio Grande do Norte'),
-       ('RS', 'Rio Grande do Sul'),
-       ('RO', 'Rondônia'),
-       ('RR', 'Roraima'),
-       ('SC', 'Santa Catarina'),
-       ('SP', 'São Paulo'),
-       ('SE', 'Sergipe'),
-       ('TO', 'Tocantins');
+VALUES
+('AC', 'Acre'),
+('AL', 'Alagoas'),
+('AP', 'Amapá'),
+('AM', 'Amazonas'),
+('BA', 'Bahia'),
+('CE', 'Ceará'),
+('DF', 'Distrito Federal'),
+('ES', 'Espírito Santo'),
+('GO', 'Goiás'),
+('MA', 'Maranhão'),
+('MT', 'Mato Grosso'),
+('MS', 'Mato Grosso do Sul'),
+('MG', 'Minas Gerais'),
+('PA', 'Pará'),
+('PB', 'Paraíba'),
+('PR', 'Paraná'),
+('PE', 'Pernambuco'),
+('PI', 'Piauí'),
+('RJ', 'Rio de Janeiro'),
+('RN', 'Rio Grande do Norte'),
+('RS', 'Rio Grande do Sul'),
+('RO', 'Rondônia'),
+('RR', 'Roraima'),
+('SC', 'Santa Catarina'),
+('SP', 'São Paulo'),
+('SE', 'Sergipe'),
+('TO', 'Tocantins');
 GO
 
 select Sigla_Estado, Nome from Estados
 
 
-DECLARE @ID_Estado INTEGER
+
+
+DECLARE @ID_Estado INT
 
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'SP'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES ('São Paulo', @ID_Estado),
-       ('Campinas', @ID_Estado),
-       ('Santos', @ID_Estado);
+VALUES
+('São Paulo', @ID_Estado),
+('Campinas', @ID_Estado),
+('Santos', @ID_Estado);
+
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'PR'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES ('Curitiba', @ID_Estado),
-       ('Foz do Iguaçu', @ID_Estado);
+VALUES
+('Curitiba', @ID_Estado),
+('Foz do Iguaçu', @ID_Estado);
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'RJ'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES ('Rio de Janeiro', @ID_Estado);
+VALUES
+('Rio de Janeiro', @ID_Estado);
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'MS'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES ('Bonito', @ID_Estado);
+VALUES
+('Bonito', @ID_Estado);
 
 SELECT TOP 1 @ID_Estado = ID_Estado FROM Estados WHERE Sigla_Estado = 'DF'
 
 INSERT INTO Cidades (Nome, ID_Estado)
-VALUES ('Brasília', @ID_Estado);
+VALUES
+('Brasília', @ID_Estado);
 GO
 
 GO
 CREATE VIEW vw_CidadesComEstado
 AS
-SELECT c.ID_Cidade,
-       c.Nome AS Cidade,
-       e.Nome AS Estado,
-       e.Sigla_Estado
+SELECT 
+    c.ID_Cidade,
+    c.Nome AS Cidade,
+    e.Nome AS Estado,
+    e.Sigla_Estado
 FROM Cidades c
-     INNER JOIN Estados e 
-     ON e.ID_Estado = c.ID_Estado;
+JOIN Estados e 
+    ON e.ID_Estado = c.ID_Estado;
 GO
 
 SELECT * FROM vw_CidadesComEstado;
 
 
-DECLARE @ID_Cidade INTEGER
+DECLARE @ID_Cidade INT
 
 SELECT TOP 1 @ID_Cidade = ID_Cidade 
 FROM Cidades 
@@ -154,46 +164,3 @@ VALUES
 ('Congresso Nacional', 'Praça dos Três Poderes', @ID_Cidade, 'Sede do Poder Legislativo do Brasil');
 
 SELECT * FROM Ponto_Turistico
-
-CREATE VIEW vw_PontosTuristicos_Listagem
-AS
-SELECT
-    pt.ID_Ponto_Turistico,
-    pt.Nome_Ponto_Turistico,
-    pt.Referencia_Ponto_Turistico,
-    c.Nome AS Cidade,
-    e.Nome AS Estado,
-    pt.Data_Inclusao
-FROM Ponto_Turistico pt
-     INNER JOIN Cidades c 
-     ON c.ID_Cidade = pt.ID_Cidade
-     INNER JOIN Estados e  
-     ON e.ID_Estado = c.ID_Estado;
-GO
-
-
-DECLARE @Busca VARCHAR(100) = 'praia';
-
-SELECT * 
-FROM vw_PontosTuristicos_Listagem
-WHERE Nome_Ponto_Turistico LIKE '%' + @Busca + '%'
-   OR Referencia_Ponto_Turistico LIKE '%' + @Busca + '%'
-   OR Cidade LIKE '%' + @Busca + '%'
-   OR Estado LIKE '%' + @Busca + '%'
-ORDER BY Data_Inclusao DESC
-OFFSET 0 ROWS FETCH NEXT 5 ROWS ONLY;
-
-
-DECLARE @ID INTEGER = 1;
-
-SELECT pt.Nome_Ponto_Turistico,
-       pt.Descricao,
-       pt.Referencia_Ponto_Turistico,
-       c.Nome AS Cidade,
-       e.Nome AS Estado
-FROM Ponto_Turistico AS pt
-     INNER JOIN Cidades AS c 
-     ON c.ID_Cidade = pt.ID_Cidade
-     INNER JOIN Estados AS e 
-     ON e.ID_Estado = c.ID_Estado
-WHERE pt.ID_Ponto_Turistico = @ID;

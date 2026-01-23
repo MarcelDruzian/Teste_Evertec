@@ -1,0 +1,86 @@
+﻿@page "{id:int}"
+@model DetalhesModel
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+
+<div class="content">
+    <div class="logo">Logotipo</div>
+
+    <form method="post" style="margin-top: 20px">
+        <div class="form-group">
+            <label style="text-align: justify" for="nome">Nome:</label>
+            <input asp-for="Ponto.Nome_Ponto_Turistico" type="text" disabled="@(!Model.IsEditMode)" id="nome" placeholder="@Model.Ponto.Nome_Ponto_Turistico">
+        </div>
+
+        <div class="form-group">
+            <label>Localização:</label>
+            <input type="hidden" asp-for="Ponto.ID_Ponto_Turistico" />
+            <input type="hidden" asp-for="Ponto.Data_Cadastro" />
+            <div class="location-group">
+                <select asp-for="EstadoSelecionadoId"
+                        asp-items="@(new SelectList(Model.ListaEstados,
+                                   "ID_Estado",
+                                   "Sigla_Estado"))"
+                        disabled="@(!Model.IsEditMode)"
+                        id="estadoSelect"
+                        onchange="carregarCidades()">
+
+                    <option value="">Selecione o estado</option>
+                </select>
+                <select disabled="@(!Model.IsEditMode)" asp-for="Ponto.ID_Cidade" name="Ponto.ID_Cidade" id="cidadeSelect" style="width: 100%">
+                    <option value="@Model.Ponto.ID_Cidade">@Model.Ponto.Cidade.Nome_Cidade</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="referencia">Referência:</label>
+            <input asp-for="Ponto.Referencia_Ponto_Turistico" type="text" disabled="@(!Model.IsEditMode)" id="referencia" placeholder="@Model.Ponto.Referencia_Ponto_Turistico">
+        </div>
+
+        <div class="form-group">
+            <label for="descricao">Descrição:</label>
+            <textarea asp-for="Ponto.Descricao" disabled="@(!Model.IsEditMode)" id="descricao" placeholder="..."></textarea>
+        </div>
+
+        <div class="buttons">
+            <a class="btn" asp-page="/Index">Voltar</a>
+            <button asp-page-handler="Editar" asp-for="@Model.Ponto.ID_Ponto_Turistico type="submit" disabled="@(Model.IsEditMode)" class="btn">Editar</button>
+            <button asp-page-handler="Excluir" asp-for="@Model.Ponto.ID_Ponto_Turistico type="submit" disabled="@(Model.IsEditMode)" class="btn">Excluir</button>
+            <button asp-page-handler="Salvar" type="submit" disabled="@(!Model.IsEditMode)" class="btn">Salvar</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function carregarCidades() {
+        var estadoId = document.getElementById("estadoSelect").value;
+        var cidadeSelect = document.getElementById("cidadeSelect");
+
+        cidadeSelect.innerHTML = "<option value=''>Carregando...</option>";
+
+        if (estadoId === "") {
+            cidadeSelect.innerHTML = "<option value=''>Cidade...</option>";
+            return;
+        }
+
+        fetch(`?handler=Cidades&estadoId=${estadoId}`)
+            .then(response => response.json())
+            .then(data => {
+                cidadeSelect.innerHTML = "<option value=''>Cidade...</option>";
+
+                data.forEach(cidade => {
+                    var option = document.createElement("option");
+                    option.value = cidade.iD_Cidade;
+                    option.text = cidade.nome_Cidade;
+                    cidadeSelect.appendChild(option);
+                    console.log(cidade);
+                });
+            })
+            .catch(() => {
+                cidadeSelect.innerHTML = "<option value=''>Erro ao carregar</option>";
+            });
+    };
+</script>
